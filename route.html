@@ -15,54 +15,55 @@
 	
   </head>
 
-  <body>
-	<div class="desktop-container" style="max-width:100%; height:500px;">
-    <nav class="navbar navbar-light navbar-expand-md fixed-top">
-      <a class="navbar-brand" style="width:15%; height:auto;" href="index.html"><img src="images/logo.png" style="width:80%; heigth:auto;"></a>
-      		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      		<span class="navbar-toggler-icon"></span></button>
+<body>
+<div class="desktop-container" style="max-width:100%; height:500px;">
 
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault"></div>
-	  <span class="dropdown">
-            <a class="nav-link" style="float: right; margin-right: -70%;" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/menu-icon.png" style="width:8%; height:auto;"></a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Previous Trips</a>
-              <a class="dropdown-item" href="#">Saved Locations</a>
-              <a class="dropdown-item" href="#">Popular Searches</a>
-			 </div> 
-	  </span>
+	<nav class="navbar navbar-light navbar-expand-md fixed-top">
+      	<a class="navbar-brand" style="width:15%; height:auto;" href="index.html"><img src="images/logo.png" style="width:80%; heigth:auto;"></a>
+      		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      			<span class="navbar-toggler-icon"></span>
+		</button>
+
+      	<div class="collapse navbar-collapse" id="navbarsExampleDefault"></div>
+		<span class="dropdown">
+            	<a class="nav-link" style="float: right; margin-right: -70%;" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/menu-icon.png" style="width:8%; height:auto;"></a>
+            		<div class="dropdown-menu" aria-labelledby="dropdown01">
+              		<a class="dropdown-item" href="#">Previous Trips</a>
+             		<a class="dropdown-item" href="#">Saved Locations</a>
+             	 	<a class="dropdown-item" href="#">Popular Searches</a>
+			</div> 
+	  	</span>
     </nav>
 	
 	
 	
-	<main role="main" class="container" style="margin-top:100px;">
-		<div class="hero-text">
-			<h3>Your errands:</h3>
-			<ul>
-			<script> 
-				var errandList = JSON.parse(localStorage.getItem('errand'));
-				// to print entire array use command below
-				//document.write(errandList);
+<main role="main" class="container" style="margin-top:100px;">
+	<div class="hero-text">
+		<h3>Your errands:</h3>
+		<ul>
+		<script> 
+			var errandList = JSON.parse(localStorage.getItem('errand'));
+			// to print entire array use command below
+			//document.write(errandList);
 				
 				
-				// to print each item individually 
-				for (var i = 0; i<errandList.length; i++) {
-					document.write(errandList[i]);
-					document.write("<br>");
-				}
+			// to print each item individually 
+			for (var i = 0; i<errandList.length; i++) {
+				document.write(errandList[i]);
+				document.write("<br>");
+			}
 				
-			</script>
-			</ul>
-		</div>	
-	</main>
-</div>
+		</script>
+		</ul>
+	</div>	
+</main>
+</div><!-- /desktop-container -->
 
-    <footer class="footer">
-      <div class="container" style="text-align:centered;">
-        <span class="text-muted">get it done &copy;</span>
-      </div>
-    </footer>
-
+<footer class="footer">
+	<div class="container" style="text-align:centered;">
+        	<span class="text-muted">get it done &copy;</span>
+     	</div>
+</footer>
 </body>	
 
 
