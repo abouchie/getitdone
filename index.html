@@ -17,59 +17,58 @@
     <link href="starter-template.css" rel="stylesheet">
   </head>
 
+<body>
+<div class="desktop-container" style="max-width:100%; height:500px;">
+    	<nav class="navbar navbar-light navbar-expand-md fixed-top">
+      		<a class="navbar-brand" style="width:15%; height:auto;" href="index.html"><img src="images/logo.png" style="width:80%; heigth:auto;"></a>
+      		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+       	 		<span class="navbar-toggler-icon"></span>
+      		</button>
 
-  <body>
-	<div class="desktop-container" style="max-width:100%; height:500px;">
-    <nav class="navbar navbar-light navbar-expand-md fixed-top">
-      <a class="navbar-brand" style="width:15%; height:auto;" href="index.html"><img src="images/logo.png" style="width:80%; heigth:auto;"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault"></div>
-	  <span class="dropdown">
-            <a class="nav-link" style="float: right; margin-right: -70%;" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/menu-icon.png" style="width:8%; height:auto;"></a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Previous Trips</a>
-              <a class="dropdown-item" href="#">Saved Locations</a>
-              <a class="dropdown-item" href="#">Popular Searches</a>
-			 </div> 
-	  </span>
-    </nav>
+      	<div class="collapse navbar-collapse" id="navbarsExampleDefault"></div>
+	  	<span class="dropdown">
+            	<a class="nav-link" style="float: right; margin-right: -70%;" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/menu-icon.png" style="width:8%; height:auto;"></a>
+            	<div class="dropdown-menu" aria-labelledby="dropdown01">
+              		<a class="dropdown-item" href="#">Previous Trips</a>
+              		<a class="dropdown-item" href="#">Saved Locations</a>
+              		<a class="dropdown-item" href="#">Popular Searches</a>
+		</div> 
+	  	</span>
+    	</nav>
 
   
     <main role="main" class="container" style="margin-top:100px;">
-		<div class="hero-text" style="padding:2% 15%;">
-			<h3>Get your errands done fast. Let us help.</h3>
-			<p>Enter your errands below and we will find you the fastest route to tackle all your to-dos</p>
-		</div>	
+	<div class="hero-text" style="padding:2% 15%;">
+		<h3>Get your errands done fast. Let us help.</h3>
+		<p>Enter your errands below and we will find you the fastest route to tackle all your to-dos</p>
+	</div>	
 		
-		<div class="input-group mb-3" style="margin-top:2%; padding:0 15%;">
-		<form>	
-		  	<input type="text" class="form-control" placeholder="Add an item" value=' ' id='EnterItem' aria-describedby="basic-addon2" style="float:left; padding-right:40px; margin-right:50px;">
-		  	<div class="input-group-append">
-		    	<button class="btn btn-outline-secondary" value='Add to List' id='add' type="button">Add</button>
-		  	</div>
-		</form>
-		</div>
+	<div class="input-group mb-3" style="margin-top:2%; padding:0 15%;">
+	<form>	
+		<input type="text" class="form-control" placeholder="Add an item" value=' ' id='EnterItem' aria-describedby="basic-addon2" style="float:left; padding-right:40px; margin-right:50px;">
+		  <div class="input-group-append">
+		    <button class="btn btn-outline-secondary" value='Add to List' id='add' type="button">Add</button>
+		  </div>
+	</form>
+	</div>
 
 		
-		<div class="todoList" style="padding:0 15%;">
-			<ul id="list_item"></ul>
-		</div>	
+	<div class="todoList" style="padding:0 15%;">
+		<ul id="list_item"></ul>
+	</div>	
 		
-		<div style="padding:2% 15%;">
-			<button class="btn btn-outline-secondary" value='route' id='route' type="button">Get going!</button>
-		</div>
+	<div style="padding:2% 15%;">
+		<button class="btn btn-outline-secondary" value='route' id='route' type="button">Get going!</button>
+	</div>
     </main><!-- /.container -->
-	</div><!-- /desktop-container -->
+</div><!-- /desktop-container -->
 	
-    <footer class="footer">
-      <div class="container" style="text-align:centered;">
-        <span class="text-muted">get it done &copy;</span>
-      </div>
-    </footer>	
 
+<footer class="footer">
+	<div class="container" style="text-align:centered;">
+        	<span class="text-muted">get it done &copy;</span>
+      	</div>
+</footer>	
 </body>
 </html>
 
