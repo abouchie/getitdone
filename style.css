@@ -1,0 +1,25 @@
+
+
+	#list_item li {
+		list-style:none;
+	}
+	
+	.x-item {
+		list-style-type: none;
+		background: url(images/x-icon.png) no-repeat top 10px left 14px;
+		height: 22px;
+		width: 30px;
+		border: transparent;
+	}
+	
+	.navbar {
+		background-color:#e5f6ff;;
+	}
+	
+	.nav-link {
+		color:black !important;
+	}
+
+	.dropdown-menu {
+		left:10% !important;
+	}
