@@ -1,2 +1,3 @@
 Flask==0.12
 googlemaps==2.5.1
+Flask-Session==0.3

@@ -106,3 +106,5 @@ venv.bak/
 #my api key
 gmaps.key
 
+#default session storage dir
+.flask_session/

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
     <!-- jquery -->
-    <script src="../static/scripts/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
     
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 <body>
 <div class="desktop-container" style="max-width:100%; height:500px;">
         <nav class="navbar navbar-light navbar-expand-md fixed-top">
-            <a class="navbar-brand" style="width:15%; height:auto;" href="index.html"><img src="../static/images/logo.png" style="width:80%; height:auto;"></a>
+            <a class="navbar-brand" style="width:15%; height:auto;" href="{{url_for('index')}}"><img src="../static/images/logo.png" style="width:80%; height:auto;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,8 +42,10 @@
   
     <main role="main" class="container" style="margin-top:100px;">
         
-        {% block container %}
-        {% endblock %}
+        <div class="content">
+            {% block container %}
+            {% endblock %}
+        </div>
         
     </main><!-- /.container -->
 </div><!-- /desktop-container -->
@@ -95,56 +97,37 @@
         list.removeChild(item);
         
     }
+
+    //reference: https://stackoverflow.com/questions/5524045/jquery-non-ajax-post
+    function formPost(action, method, input) {
+        'use strict';
+        var form;
+        form = $('<form />', {
+            action: action,
+            method: method,
+            style: 'display: none;'
+        });
+        if (typeof input !== 'undefined' && input !== null) {
+            $.each(input, function (index, value) {
+                $('<input />', {
+                    type: 'hidden',
+                    name: ('errand' + index),
+                    value: value
+                }).appendTo(form);
+            });
+        }
+        form.appendTo('body').submit();
+    }
             
     
     /* pass data to route page when user clicks Get Going! */
     document.getElementById("route").onclick  = function() {
-        //localStorage.setItem('errand', JSON.stringify(errandsList));
-        //window.location.href='route.html';
-
-        /* send to controller */
-        $.ajax({
-            url: "/find-locations",
-            type: "POST",
-            data: JSON.stringify(errandsList),
-            contentType: "application/json; charset=utf-8",
-            success: function (errands) {
-                console.log('success');
-                
-                /*  use this if rendering new html over old */
-                //$('html').html(result);
-
-                //manually entering start/end locations
-                var data = {
-                    'origin': '126 Park Ave, Hoboken, NJ',
-                    'destination': '126 Park Ave, Hoboken, NJ',
-                    'stops': errands
-                };
-
-                //temp for testing purposes
-                $.ajax({
-                    url: "/get-directions",
-                    type: "POST",
-                    data: JSON.stringify(data),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (result) {
-                        console.log('success');
-                        $('html').html(result);
-                    }
-                });
-                //temp - for testing purposes
-                
-
-            },
-            error: function(jqXHR, textStatus, errorThrown){
-                console.log('error:' + textStatus);
-            },
-            failure: function (errMsg) {
-                console.log('failed: ' + errMsg)
-            },
-        });
+        // localStorage.setItem('errand', JSON.stringify(errandsList));
+        // window.location.href='route.html';
+        formPost("/find-locations", "POST", errandsList);
     }    
 </script> 
+
  
     
 <!-- Bootstrap core JavaScript

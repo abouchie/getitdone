@@ -5,9 +5,10 @@
         <h3>Your errands:</h3>
         <ol>
             {% for errand in route %}
-                 <li>{{ errand }}</li>
-            {% endfor %}
+             <li>{{ errand['name'] }}: {{ errand['formatted_address'] }}</li>
+        {% endfor %}
         </ol>
+        <p>Total travel time: {{ time }}</p>
         <!--
         <ul>
         <script> 
