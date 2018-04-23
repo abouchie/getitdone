@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <div class="hero-text">
+        <h3>Your errands:</h3>
+        <ol>
+            {% for errand in route %}
+                 <li>{{ errand }}</li>
+            {% endfor %}
+        </ol>
+        <!--
+        <ul>
+        <script> 
+            var errandList = JSON.parse(localStorage.getItem('errand'));
+            // to print entire array use command below
+            //document.write(errandList);
+                
+                
+            // to print each item individually 
+            for (var i = 0; i<errandList.length; i++) {
+                document.write(errandList[i]);
+                document.write("<br>");
+            }
+                
+        </script>
+        </ul>
+        -->
+    </div>  
+{% endblock %}
+        

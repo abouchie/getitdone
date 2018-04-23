@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <div class="hero-text" style="padding:2% 15%;">
+        <h3>Get your errands done fast. Let us help.</h3>
+        <p>Enter your errands below and we will find you the fastest route to tackle all your to-dos</p>
+    </div>  
+        
+    <div class="input-group mb-3" style="margin-top:2%; padding:0 15%;">
+    <form>  
+        <input type="text" class="form-control" placeholder="Add an item" value=' ' id='EnterItem' aria-describedby="basic-addon2" style="float:left; padding-right:40px; margin-right:50px;">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" value='Add to List' id='add' type="button">Add</button>
+          </div>
+    </form>
+    </div>
+
+    <div class="todoList" style="padding:0 15%;">
+        <ul id="list_item"></ul>
+    </div>  
+        
+    <div style="padding:2% 15%;">
+        <button class="btn btn-outline-secondary" value='route' id='route' type="button">Get going!</button>
+    </div>
+{% endblock %}  
