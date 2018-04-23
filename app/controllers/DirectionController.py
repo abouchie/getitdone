@@ -1,6 +1,6 @@
 from app.controllers.BaseController import BaseController
-from flask import render_template, jsonify, request, make_response
-from datetime import datetime
+from flask import render_template, jsonify, request, make_response, session
+from datetime import datetime, timedelta
 
 import sys, itertools, json
 
@@ -10,22 +10,38 @@ class DirectionController(BaseController):
         super().__init__()
 
     def get_directions(self, request):
-        data = request.get_json()
-        stops = json.loads(data['stops'])
+        ##### FOR TESTING PURPOSES ####
+        stops = session.get('locations')
+        stops = json.loads(stops)
+
+        data = {
+            'origin': {
+                'formatted_address': '126 Park Ave, Hoboken, NJ 07030, USA',
+                'name': 'Home'
+            },
+            'destination': {
+                'formatted_address': '126 Park Ave, Hoboken, NJ 07030, USA',
+                'name': 'Home'
+            },
+            'stops': stops
+        }
+        ##### FOR TESTING PURPOSES ####
+
         locations = [stop for stop in stops]
         locations.insert(0, data['origin'])
         locations.append(data['destination'])
 
-        # if data['destination'] != data['origin']:
-        #     locations.append(data['destination'])
-
         distances = self.calculate_shortest_paths(locations)
-        route_order = self.get_shortest_route_order(stops, distances)
+        route_order, time = self.get_shortest_route_order(stops, distances)
         route = self.build_route(locations, route_order)
 
-        #return jsonify(route)
-        return render_template('route.html', route=route)
+        time = str(timedelta(seconds=time))
 
+        session['route'] = json.dumps(route)
+        return make_response(render_template('route.html',
+                                             route=route,
+                                             time=time))
+        
     def _get_dist_matrix(self, origins, destinations):
         return self.api.distance_matrix(origins,
                                         destinations,
@@ -39,7 +55,8 @@ class DirectionController(BaseController):
         return result["duration_in_traffic"]["value"]
 
     def calculate_shortest_paths(self, locations):
-        matrix = self._get_dist_matrix(locations, locations)
+        addresses = [loc['formatted_address'] for loc in locations]
+        matrix = self._get_dist_matrix(addresses, addresses)
         sz = len(locations)
 
         # create 2-d array with edge (x, y) weights
@@ -81,7 +98,7 @@ class DirectionController(BaseController):
         # insert 'start' index, append 'end' index
         route_indices.insert(0, 0)
         route_indices.append(len(distances) - 1)
-        return route_indices
+        return route_indices, min_dist
 
     def build_route(self, locations, indices):
         return [locations[x] for x in indices]

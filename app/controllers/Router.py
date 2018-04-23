@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, session
 
 from app import app
 from app.controllers.HomeController import HomeController
@@ -11,6 +11,15 @@ controllers = {
     'direction': DirectionController()
 }
     
+@app.route('/set/')
+def set():
+    session['key'] = 'hello'
+    return 'ok'
+
+@app.route('/get/')
+def get():
+    return session.get('key', 'not set')
+
 
 @app.route("/")
 def index():
