@@ -12,7 +12,6 @@ class DirectionController(BaseController):
     def get_directions(self, request):
         ##### FOR TESTING PURPOSES ####
         stops = session.get('locations')
-        stops = json.loads(stops)
 
         data = {
             'origin': {
@@ -37,7 +36,7 @@ class DirectionController(BaseController):
 
         time = str(timedelta(seconds=time))
 
-        session['route'] = json.dumps(route)
+        session['route'] = route
         return make_response(render_template('route.html',
                                              route=route,
                                              time=time))

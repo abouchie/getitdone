@@ -1,5 +1,5 @@
 from flask import Flask, session
-from flask.ext.session import Session
+from flask_session import Session
 
 import googlemaps
 import os
@@ -10,7 +10,7 @@ gmaps = googlemaps.Client(key=os.getenv("API_KEY", "no key provided"))
 
 app.config['SESSION_TYPE'] = 'filesystem'
 app.secret_key = 'super secret key'
-Session(app)
+sess = Session(app)
 
 #app.config.from_object('config')
 

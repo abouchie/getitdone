@@ -10,16 +10,6 @@ controllers = {
     'location': LocationController(),
     'direction': DirectionController()
 }
-    
-@app.route('/set/')
-def set():
-    session['key'] = 'hello'
-    return 'ok'
-
-@app.route('/get/')
-def get():
-    return session.get('key', 'not set')
-
 
 @app.route("/")
 def index():
@@ -36,22 +26,30 @@ def find_locations():
 
 '''
     incoming request should be JSON of following format:
-    [
-        "stop_0" : {
-            "name": name
-            "address": address
-        },
-        "stop_1" : {
-            "name": name
-            "address": address
-        },
-        ...,
-        "stop_N" : {
-            "name": name
-            "address": address
-        }
-    ]
+    {
+        "origin" : {},
+        "destination" : {},
+        "stops" : [
+            "stop0" : {
+                "name": name
+                "address": address
+            },
+            "stop1" : {
+                "name": name
+                "address": address
+            },
+            "stopN" : {
+                "name": name
+                "address": address
+            }
+        ]
+    }
 '''
+
+@app.route("/refine-locations", methods=["POST"])
+def refine_locations():
+    return controllers['location'].refine_locations(request)
+
 @app.route("/get-directions", methods=["POST"])
 def get_directions():
     return controllers['direction'].get_directions(request)
