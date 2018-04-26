@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<div class="errands">
+    <h3>There were some issues with some of your search entries:</h3>
+    
+    <!-- temp formatting -->
+    <br><br>
+    <!-- temp formatting -->
+
+    <form name="results" action="{{ url_for('refine_locations') }}" method="POST">
+        {% set origin = locations['origin'] %}
+        {% if origin['status'] != 'OK' %}
+        <div class="bad-origin">
+            {% if origin['status'] == 'MULTIPLE' %}
+            <div class="multiples">
+                <p>For "{{ origin['original_search_query'] }}" we found:</p>
+                    <select name="origin">
+                    {% for result in origin['results'] %}
+                        <option value="{{result['formatted_address'] }}">
+                            {{ result['name'] }}: {{result['formatted_address'] }}
+                        </option>
+                    {% endfor %}
+                    </select>
+            </div>
+            <!-- temp formatting --><br>
+            {% endif %}
+
+            {% if origin['status'] == 'EMPTY' %}
+            <div class="empty">
+                <p>Sorry, but we couldn't find anything for: "{{ origin['original_search_query'] }}"</p>
+                    Try entering another address:
+                    <input type="text" name="origin" value="">
+            </div>
+            <!-- temp formatting --><br>
+            {% endif %}
+        {% endif %}
+        </div>
+
+        {% set dest = locations['destination'] %}
+        {% if dest['status'] != 'OK' %}
+        <div class="bad-dest">
+            {% if dest['status'] == 'MULTIPLE' %}
+            <div class="multiples">
+                <p>For "{{ dest['original_search_query'] }}" we found:</p>
+                    <select name="destination">
+                    {% for result in dest['results'] %}
+                        <option value="{{result['formatted_address'] }}">
+                            {{ result['name'] }}: {{result['formatted_address'] }}
+                        </option>
+                    {% endfor %}
+                    </select>
+            </div>
+            <!-- temp formatting --><br>
+            {% endif %}
+
+            {% if dest['status'] == 'EMPTY' %}
+            <div class="empty">
+                <p>Sorry, but we couldn't find anything for: "{{ dest['original_search_query'] }}"</p>
+                    Try entering another address:
+                    <input type="text" name="destination" value="">
+            </div>
+            <!-- temp formatting --><br>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        {% for errand in locations['errands'] %}
+            {% if errand['status'] != 'OK' %}
+            <div class='bad-errands'>
+                {% if errand['status'] == 'MULTIPLE' %}
+                <div class="multiples">
+                    <p>For "{{ errand['original_search_query'] }}" we found:</p>
+                        <select name="errand_{{ errand['errand_index'] }}">
+                        {% for result in errand['results'] %}
+                            <option value="{{result['formatted_address'] }}">
+                                {{ result['name'] }}: {{result['formatted_address'] }}
+                            </option>
+                        {% endfor %}
+                        </select>
+                </div>
+                <!-- temp formatting --><br>
+                {% endif %}
+                
+                {% if errand['status'] == 'EMPTY' %}
+                <div class="empty">
+                    <p>Sorry, but we couldn't find anything for: "{{ errand['original_search_query'] }}"</p>
+                        Try entering another address:
+                        <input type="text" name="errand_{{ errand['errand_index'] }}" value="">
+                </div>
+                <!-- temp formatting --><br>
+                {% endif %}
+            </div>
+            {% endif %}
+        {% endfor %}
+
+        <!-- temp formatting --><br><br>
+
+        <button type="submit">Let's go!</button>
+    </form>
+</div>
+{% endblock %}

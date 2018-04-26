@@ -2,7 +2,7 @@
 
 {% block container %}
     <div class="hero-text">
-        <h3>Your errands:</h3>
+        <h3>Here's the best way to do all that stuff!</h3>
         <ol>
             {% for errand in route %}
              <li>{{ errand['name'] }}: {{ errand['formatted_address'] }}</li>

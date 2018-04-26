@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
 {% block container %}
-<div class="errands">
+<div class="locations">
     <h3>Based on your entries, we found these locations:</h3>
     <ol>
-        {% for location in locations %}
-             <li>{{ location['name'] }}: {{ location['formatted_address'] }}</li>
+    	<li>Origin: {{ locations['origin']['formatted_address'] }}</li>
+        {% for errand in locations['errands'] %}
+             <li>{{ errand['name'] }}: {{ errand['formatted_address'] }}</li>
         {% endfor %}
+        <li>Desintation: {{ locations['destination']['formatted_address'] }}</li>
     </ol>
 </div>
 

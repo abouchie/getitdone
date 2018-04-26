@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+<form action="{{ url_for('find_locations') }}" method="POST">
+    Start:
+    <input type="text" name="origin" value="">
+    <br>End:
+    <input type="text" name="destination" value="">
+    <br><br>
+    <input type="submit" value="Let's Go!">
+</form>
+
+{% endblock %}

@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="on the go | Errands Done Quick">
     <title>on the go | Errands Done Quick</title>
@@ -111,7 +111,7 @@
             $.each(input, function (index, value) {
                 $('<input />', {
                     type: 'hidden',
-                    name: ('errand' + index),
+                    name: ('errand_' + index),
                     value: value
                 }).appendTo(form);
             });
@@ -124,7 +124,7 @@
     document.getElementById("route").onclick  = function() {
         // localStorage.setItem('errand', JSON.stringify(errandsList));
         // window.location.href='route.html';
-        formPost("/find-locations", "POST", errandsList);
+        formPost("{{ url_for('save_errand_locations') }}", "POST", errandsList);
     }    
 </script> 
 

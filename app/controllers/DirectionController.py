@@ -10,33 +10,20 @@ class DirectionController(BaseController):
         super().__init__()
 
     def get_directions(self, request):
-        ##### FOR TESTING PURPOSES ####
-        stops = session.get('locations')
 
-        data = {
-            'origin': {
-                'formatted_address': '126 Park Ave, Hoboken, NJ 07030, USA',
-                'name': 'Home'
-            },
-            'destination': {
-                'formatted_address': '126 Park Ave, Hoboken, NJ 07030, USA',
-                'name': 'Home'
-            },
-            'stops': stops
-        }
-        ##### FOR TESTING PURPOSES ####
-
-        locations = [stop for stop in stops]
-        locations.insert(0, data['origin'])
-        locations.append(data['destination'])
+        locations = [errand for errand in session['errands']]
+        locations.insert(0, session['origin'])
+        locations.append(session['destination'])
 
         distances = self.calculate_shortest_paths(locations)
-        route_order, time = self.get_shortest_route_order(stops, distances)
+        route_order, time = self.get_shortest_route_order(session['errands'], distances)
         route = self.build_route(locations, route_order)
 
+        # convert total travel time from seconds into hh:mm:ss
         time = str(timedelta(seconds=time))
 
-        session['route'] = route
+        timestamp = datetime.now().timestamp()
+        session['route_{}'.format(timestamp)] = route
         return make_response(render_template('route.html',
                                              route=route,
                                              time=time))

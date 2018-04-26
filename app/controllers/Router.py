@@ -11,40 +11,21 @@ controllers = {
     'direction': DirectionController()
 }
 
+'''
+    this should check for login status and redirect to login page if not logged in
+    otherwise redirect to location entry page
+'''
 @app.route("/")
 def index():
     return controllers['home'].index()
-    #return render_template("home.html")
 
-'''
-    incoming request should be stringify-ed list of locations:
-    [ 'location_1', 'location_2', 'location_N']
-'''
+@app.route("/save-errand-locations", methods=["POST"])
+def save_errand_locations():
+    return controllers['location'].save_errand_locations(request)
+
 @app.route("/find-locations", methods=["POST"])
 def find_locations():
     return controllers['location'].find_locations(request)
-
-'''
-    incoming request should be JSON of following format:
-    {
-        "origin" : {},
-        "destination" : {},
-        "stops" : [
-            "stop0" : {
-                "name": name
-                "address": address
-            },
-            "stop1" : {
-                "name": name
-                "address": address
-            },
-            "stopN" : {
-                "name": name
-                "address": address
-            }
-        ]
-    }
-'''
 
 @app.route("/refine-locations", methods=["POST"])
 def refine_locations():
