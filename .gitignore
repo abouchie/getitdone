@@ -108,3 +108,6 @@ gmaps.key
 
 #default session storage dir
 flask_session/
+
+#sqlite db
+*.db

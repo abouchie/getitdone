@@ -3,6 +3,7 @@ from flask import render_template, jsonify, request, make_response, session
 from datetime import datetime, timedelta
 
 import sys, itertools, json
+from app import db
 
 
 class DirectionController(BaseController):
@@ -24,6 +25,9 @@ class DirectionController(BaseController):
 
         timestamp = datetime.now().timestamp()
         session['route_{}'.format(timestamp)] = route
+
+        print(db.metadata.tables)
+        print(db.metadata.tables.key())
         return make_response(render_template('route.html',
                                              route=route,
                                              time=time))
